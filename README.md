@@ -1,28 +1,14 @@
 # Driving Claude Code remotely with tmux
 
 Run Claude Code as a headless session inside tmux, reachable from the Claude.ai
-web app, the desktop app, SSH, or a local terminal. Start one, walk away, pick it
-up from your phone, come back to the terminal later. It stays the same session
-throughout.
+web app, the desktop app, SSH, or a local terminal.
 
 ## Workbenches
 
-The term I use for this is a **workbench**: an agentic session with tightly scoped
-context, running inside a broader agentic system.
+I call them workbenches: one space where you compose agents, tools, and contexts.
+That's why I use this tool. You build your own architecture on top of it.
 
-What I want from it is the absence of friction. Starting a focused agent should
-cost a sentence, not a setup. I say "open a workbench" and one spawns: its own
-session, its own narrow slice of context for the task in front of it, with Remote
-Control on so I can reach it from a browser or my phone and pick it back up later.
-When the work is done I close it, and the next one costs the same sentence.
-
-That composes. An agent can run this recipe too, so a workbench can open another:
-a first one takes a job, spins up workers for the parts, and I check in on any of
-them from the same app, approve or redirect, read what they found. A system of
-scoped agents grows without anyone touching a terminal.
-
-tmux and Remote Control are what make it cheap. A workbench is one detached
-session, and "open a workbench" is just the recipe below, run on demand.
+Each is one remote-controlled session, spawned on demand. The rest is how to build one.
 
 ## The whole thing in one command
 
