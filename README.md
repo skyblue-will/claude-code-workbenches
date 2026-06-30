@@ -128,6 +128,26 @@ front of you; detach again with `Ctrl-b d` and it keeps running.
 
 All three routes point at the **same live session** — switch between them freely.
 
+## What this unlocks — agents that spawn agents
+
+The reason this is more than a convenience: **a remote-controlled session is
+reachable from the Claude.ai web app, the desktop app, or your phone** — not just
+a terminal. And the agent *inside* that session has a shell. Put those two facts
+together and you get composition:
+
+- An agent running in one session can run this very recipe — so **an agent can
+  spawn more agents** (or whole agent workspaces), each one itself
+  remote-controlled and independently reachable at its own `claude.ai/code` URL.
+- Because every one of them surfaces at a URL, you can **stand up and steer a
+  multi-agent setup from your phone**: a first agent orchestrates, spins up workers
+  for sub-tasks, and you drop in on any of them — approve, redirect, read what they
+  found — from the same app, anywhere. No terminal required once the first one is up.
+
+So the building block here — one headless, remote-controllable session — is also
+the *unit* of a larger architecture: sessions that launch sessions, a tree of
+agents you can grow and drive from a phone. The single command at the top is the
+atom; this is what you can build out of it.
+
 ## Reference script
 
 [`spawn-remote.sh`](spawn-remote.sh) is the whole recipe as one runnable script:
@@ -145,6 +165,9 @@ chmod +x spawn-remote.sh
 ./spawn-remote.sh myagent ~/myproject
 ./spawn-remote.sh myagent ~/myproject 'Find and fix the failing test.'
 ```
+
+Because the script is just a shell command, an agent can run it too — which is
+exactly how one session grows the tree of sessions described above.
 
 ## Requirements & caveats
 
