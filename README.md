@@ -1,7 +1,7 @@
 # Driving Claude Code remotely with tmux
 
-Run Claude Code as a headless session inside tmux, reachable from the Claude.ai
-web app, the desktop app, SSH, or a local terminal.
+Run Claude Code as a headless, always-on session inside tmux, reachable from
+anywhere: the Claude.ai web app, the desktop app, SSH, or a local terminal.
 
 ## Workbenches
 
