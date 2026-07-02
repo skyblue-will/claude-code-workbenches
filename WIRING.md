@@ -1,6 +1,8 @@
 # Wiring it together
 
-*The README builds one remote workbench. This page is the system I run on top of it.*
+*The README builds one remote workbench. This page is the working layer I run on top of
+it. Read it as a foundation: the idea it serves is bigger than terminals, and the last
+section says where that goes.*
 
 ## What it is
 
@@ -227,7 +229,16 @@ benches are how the work moves.
 
 ## Where this goes
 
-This page is deliberately the minimum that works: a front door so the machine
-disappears, repos for memory, seeds for intent, skills for repetition, gates for safety.
-Past this point architectures diverge. Mine grew into something with its own vocabulary,
-and yours will too. Build on the parts that earn their keep and delete the rest.
+This repo is a foundational piece, not the full idea. What you have once it's running
+is remote, durable, parallel: benches you can open from anywhere, that survive you
+leaving, with memory in repos and a human on the gates. That is the ground layer.
+
+The idea it exists to serve sits above it: give an agent the best possible chance of
+completing meaningful work with the least human involvement that is still safe. Every
+habit on this page points at that. The seed carries the intent, the bench grows the
+work, and you stay exactly where you must: the go and the sign-off.
+
+I have written up the fuller architecture I run on this foundation, as a pattern rather
+than a personal setup: [agentic-federation](https://github.com/skyblue-will/agentic-federation),
+an architecture for adopting AI agents at real scale. Take the foundation, build your
+own on it, and keep the parts that earn their keep.
