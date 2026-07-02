@@ -145,15 +145,22 @@ Nothing is lost when a session dies, because nothing durable lived only in the s
 Run it all on a machine that never sleeps — a cheap VPS is plenty (tmux and Claude Code
 are the whole stack). That is what turns the pattern from a desk tool into a system:
 benches keep working when your laptop is shut, and the Remote Control URL means the
-phone in your pocket can open, steer, or check any of them from anywhere. Kick off three
-pieces of work from the sofa; read the results after lunch.
+phone in your pocket can open, steer, or check any of them from anywhere.
+
+**Keep one standing bench as the front door.** A phone can't run `spawn-remote.sh`
+itself, so leave one session always running whose job is to open the others. From the
+phone you open *that* session in the Claude app and say "spawn an audit bench on
+project-a, seeded with…" — it runs the script (§5), hands you the new session's link,
+and you carry on with your morning. Kick off three pieces of work from the sofa; read
+the results after lunch.
 
 ## 9 · A worked hour
 
 What this actually feels like, end to end:
 
-1. Morning, phone: spawn `audit` on project-a with a seed naming the report it should
-   produce. Put the phone away.
+1. Morning, phone: open the front-door session (§8) in the Claude app and ask it to
+   spawn `audit` on project-a, seeded with the report it should produce and where to
+   commit it. The seed is complete, so the bench needs no supervisor: put the phone away.
 2. Midday, laptop: `tmux attach -t audit` — read the report it committed, leave two
    corrections in the chat, detach.
 3. It finishes; the report is a commit in the repo, not a scrollback memory. Ask it to
