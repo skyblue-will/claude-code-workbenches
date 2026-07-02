@@ -1,15 +1,13 @@
 # Wiring it together
 
-*The README builds one remote workbench. This page is the working layer I run on top of
-it. Read it as a foundation: the idea it serves is bigger than terminals, and the last
-section says where that goes.*
+*The README builds one remote workbench. This page is how I run many of them as one system.*
 
 ## What it is
 
-From a phone, I can open a terminal-grade AI workbench on any piece of my work, hand it
-a job, and put the phone away, without ever logging on to the server it runs on. Each
-workbench starts with a footing I choose: a directory to open in, a brief, and a reading
-list. Results land as commits, so nothing important lives only in a chat window.
+From a phone, I can open a Claude Code workbench on any piece of my work, hand it a job,
+and put the phone away, without ever logging on to the server. Each workbench starts with
+a footing I choose: a directory to open in, a brief, and a reading list. Results land as
+commits, so nothing important lives only in a chat window.
 
 At the basic level, that's four abilities:
 
@@ -200,7 +198,14 @@ Ask the bench: 'Write where we got to into docs/state.md: what's done, what's ne
 what's blocked and on whom. Commit it. Then exit.'
 ```
 
-Re-opening is then a fresh spawn whose seed points at the note:
+Then end the session, and check what else is running while you're at it:
+
+```bash
+tmux ls                          # every bench on the box, at a glance
+tmux kill-session -t project-a   # end one; the repo keeps everything that matters
+```
+
+Re-opening is a fresh spawn whose seed points at the note:
 
 ```bash
 ./spawn-remote.sh project-a ~/repos/project-a \
@@ -238,7 +243,7 @@ completing meaningful work with the least human involvement that is still safe. 
 habit on this page points at that. The seed carries the intent, the bench grows the
 work, and you stay exactly where you must: the go and the sign-off.
 
-I have written up the fuller architecture I run on this foundation, as a pattern rather
-than a personal setup: [agentic-federation](https://github.com/skyblue-will/agentic-federation),
-an architecture for adopting AI agents at real scale. Take the foundation, build your
-own on it, and keep the parts that earn their keep.
+The fuller architecture I run on this foundation, offices with real data boundaries,
+signed records of work, and a written standard, is getting a proper evaluation before
+it goes public. This layer is published first because it stands on its own. Take it
+and build your own on it.
