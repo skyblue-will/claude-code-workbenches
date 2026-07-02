@@ -13,7 +13,8 @@ top of it.
 
 Each one is a remote-controlled session you spawn on demand, and any terminal can
 spawn more from inside itself. The only limit is RAM. The rest of this is how to
-build one.
+build one. **[WIRING.md](WIRING.md) is how many of them become a working system** —
+home repos, seed prompts, skills, fan-out, gates, and picking work back up.
 
 ## The whole thing in one command
 
