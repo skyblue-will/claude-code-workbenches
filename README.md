@@ -50,22 +50,30 @@ about what this recipe adds. As of mid-2026:
   terminal attached, hosted by a per-user supervisor, and survive sleep. They
   cover "keep working after I close the shell" without tmux.
 
-Knowing all that, the always-on box under tmux still buys three things:
+Against the questions that actually matter, side by side:
 
-1. **The machine question disappears.** Every native mode above runs on a
-   machine that has to be on: the server-mode process and the supervisor both
-   stop at shutdown, and a sleeping laptop pauses the work. On a box that
-   never turns off, sessions are reachable and working at any hour, and your
-   own computer can be off.
-2. **Any directory, any brief.** Server mode spawns sessions in one repo. The
-   spawn script, run by an agent you ask, starts a named session in any
-   directory with any seed prompt and any plugin. The front door is an agent,
-   so it composes that brief for you rather than opening a blank session.
-3. **A second door.** tmux sessions are also real terminals you can reach
-   over SSH, independent of the app.
+| You want | RC session | RC server mode | Background (`--bg`) | Wired together (this recipe) |
+|---|---|---|---|---|
+| Drive a session from your phone | yes | yes | no, local only | yes, every bench |
+| Start a fresh session from your phone | no | yes, in the server's repo | no | yes, any repo, via the front door |
+| Survive the terminal closing | no | no | yes | yes |
+| Work continues while your own computer is off | no* | no* | no* | yes |
+| Arrive pre-briefed: a work order, not a blank prompt | no, you type it | no, you type it | yes, from that machine's shell | yes, composed and fed at spawn |
+| Sessions spawn sessions | no | no | no | yes |
+| Come back up after a reboot | no | no | no | yes, one cron line |
+| Attach as a real terminal over SSH | no | no | yes, `claude attach` | yes, `tmux attach` |
+| Isolation between parallel sessions | n/a | yes, git worktrees | yes, git worktrees | no, deliberate: the repo is the memory |
 
-None of this replaces the native modes; it wraps the same feature in a home
-that never closes.
+\* They run wherever you start them. Put them on an always-on box and you have
+started building this recipe.
+
+Read the right-hand column carefully: it isn't a feature, and this repo isn't
+a product competing with the other three columns. The native modes are
+ingredients. The value is the wiring: an always-on machine, tmux holding the
+terminals, Remote Control reaching them, and the working conventions in
+[WIRING.md](WIRING.md), seeds as work orders, repos as memory, gates, a front
+door that is an agent. That page is where this stops being a features list
+and becomes a way of working.
 
 ## The whole thing in one command
 
@@ -196,6 +204,25 @@ chmod +x spawn-remote.sh
 ```
 
 An agent can run it too, which is how one session starts the others.
+
+## Getting a box
+
+The crux of this recipe is the always-on machine, and it's the part people
+stall on. Any of these works:
+
+- **A cheap VPS** is the lowest-friction answer: a few pounds a month, nothing
+  on your desk, survives power cuts, and providers give you snapshots. 4 GB of
+  RAM runs several benches comfortably.
+- **A Mac Mini in a cupboard** works the same way: install tmux with brew and
+  the recipe is identical. You own the hardware and the files stay home; you
+  also own the uptime, the backups, and the electricity.
+- **An old laptop with the lid shut** is the free trial. Disable
+  sleep-on-lid-close and you have a host to learn on before spending anything.
+
+[`bootstrap-vps.sh`](bootstrap-vps.sh) takes a fresh Ubuntu VPS to a working
+host in one run: tmux and Claude Code installed, this repo cloned, the reboot
+cron from WIRING.md in place. Two one-time steps stay manual, logging in and
+trusting your directories, because credentials should never be scripted.
 
 ## The security model, plainly
 
