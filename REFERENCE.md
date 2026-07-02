@@ -155,9 +155,9 @@ Side by side:
 \* They run wherever you start them. Put them on an always-on box and you have
 started building this recipe.
 
-The native modes are ingredients. The recipe is the wiring: an always-on
-machine, tmux holding the terminals, Remote Control reaching them, and the
-working conventions in [WIRING.md](WIRING.md).
+It's not the features, it's a way of using them: an always-on machine, tmux
+holding the terminals, Remote Control reaching them, and the working
+conventions in [WIRING.md](WIRING.md).
 
 ## Requirements and notes
 

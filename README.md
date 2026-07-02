@@ -1,24 +1,25 @@
-# Claude Code workbenches: agents on a machine that never closes
+# Managing multiple terminals remotely with Claude Code
 
 People are carrying open laptops around the house because closing the lid
-would kill the agent. That's the tell. The work is right; the machine is
-wrong.
+would kill the agent. The agent is fine. It's just running on the wrong
+machine.
 
-The fix: run your Claude Code sessions on a cheap always-on box instead.
-Every session keeps working while your laptop is shut and your phone is in
-your pocket, and every one is reachable from anywhere: the Claude app, a
-browser, SSH. You open work from wherever you are, hand it a job, and walk
-away. Results land as git commits, not scrollback.
+Run your Claude Code sessions on a cheap always-on box instead. They keep
+working with your laptop shut and your phone in your pocket, and you can
+reach any of them from the Claude app, a browser, or SSH. You hand a session
+a job from wherever you are and get on with your day. Anything worth keeping
+gets committed to a repo, so it survives whatever happens to the session.
 
-Day to day: from your phone, ask a standing session to open a new one on any
-project, seeded with the task. Check in at lunch. Let it finish, or kill it;
-the repos hold the memory, so nothing you care about dies with a session.
+Day to day that means: from your phone, ask a standing session to open a new
+one on any project, with the task written in. Check on it at lunch. Let it
+finish, or kill it.
 
 ## A workbench
 
-A workbench is just a terminal on that box: one space where an agent, its
-tools, and its context do a piece of work. Spawn as many as you want. Any of
-them can spawn more. The only limit is RAM.
+A workbench is just a terminal on that box. It's the name I give them,
+because that's how one feels to use: a single space where you bring together
+an agent, tools, and context to do a piece of work. Spawn as many as you
+want. Any of them can spawn more. The only limit is RAM.
 
 ## The whole thing in one command
 
@@ -37,27 +38,29 @@ feed an opening prompt, and the ways back in.
 
 - **A cheap VPS**: a few pounds a month, nothing on your desk, survives power
   cuts. 4 GB of RAM runs several benches.
-- **A Mac Mini in a cupboard**: same recipe, `brew install tmux`. You own the
-  hardware and the files stay home; you also own the uptime.
-- **An old laptop, lid shut, sleep disabled**: the free trial.
+- **A Mac Mini in a cupboard**: same recipe, `brew install tmux`. Your
+  hardware and your files stay at home, but the uptime and backups are on
+  you.
+- **An old laptop, lid shut, sleep disabled**: costs nothing and lets you try
+  all of this before buying anything.
 
 [`bootstrap-vps.sh`](bootstrap-vps.sh) takes a fresh Ubuntu VPS to a working
 host in one run. Logging in and trusting your directories stay manual,
 because credentials should never be scripted.
 
-## The security model, plainly
+## Security
 
 - **These are not sandboxes.** Every bench is a full process on the same box,
-  as the same user. For real isolation between pieces of work: separate Unix
-  users, containers, or separate machines.
-- **A dedicated box is itself a boundary.** Unattended agents on your own
-  laptop put your SSH keys and browser sessions in the blast radius. On a box
-  that holds only the work, the worst case is the box.
-- **Your claude.ai account becomes a control surface for the machine.**
-  Strong auth, and don't share it.
-- **Keep a human on anything that leaves the machine.** Speed inside the box
-  is the agent's; sending, publishing, and spending stay behind your yes.
-  How to write the gates down is in WIRING.md.
+  as the same user. If you need real isolation between pieces of work, use
+  separate Unix users, containers, or separate machines.
+- **A dedicated box limits the damage.** Unattended agents on your own laptop
+  put your SSH keys and browser sessions at risk. If the box only holds the
+  work, the work is all that's at risk.
+- **Your claude.ai account can now drive terminals on the box.** Use strong
+  auth and don't share the account.
+- **Keep a human on anything that leaves the machine.** Let the agent move
+  fast inside the box. Sending, publishing, and spending wait for your
+  say-so. WIRING.md shows how to write those gates down.
 
 ## Where next
 
