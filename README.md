@@ -37,7 +37,7 @@ feed an opening prompt, and the ways back in.
 ## Getting a box
 
 - **A cheap VPS**: a few pounds a month, nothing on your desk, survives power
-  cuts. 4 GB of RAM runs several benches.
+  cuts. A session is roughly 400 MB, so 4 GB runs a handful.
 - **A Mac Mini in a cupboard**: same recipe, `brew install tmux`. Your
   hardware and your files stay at home, but the uptime and backups are on
   you.
