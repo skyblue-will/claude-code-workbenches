@@ -24,10 +24,10 @@ Three ingredients, and it helps to be plain about each:
 - **An always-on machine.** Yes, a computer is left on somewhere: deliberately not
   the one on your desk. A cheap VPS is plenty. Your laptop can sleep; the
   terminals don't.
-- **tmux.** If you haven't met it: tmux runs terminal sessions on a machine that
-  keep running after you disconnect. You attach to a session to see it, detach,
-  and it carries on. That's the whole trick this recipe borrows: the terminal
-  belongs to the box, not to your screen.
+- **tmux.** tmux runs terminal sessions on a machine that keep running after
+  you disconnect. You attach to a session to see it, detach, and it carries on.
+  That's the whole trick this recipe borrows: the terminal belongs to the box,
+  not to your screen.
 - **Remote Control.** Claude Code's own feature that puts a running session in
   your claude.ai session list, so you can drive it from the web app, the desktop
   app, or your phone. It looks like any other Claude Code session in the app; the
