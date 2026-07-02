@@ -17,6 +17,35 @@ build one. **[WIRING.md](WIRING.md) is how many of them become a working system*
 the front door, repos as memory, seed prompts, skills, fan-out, gates, and picking
 work back up.
 
+## What's actually running where
+
+Three ingredients, and it helps to be plain about each:
+
+- **An always-on machine.** Yes, a computer is left on somewhere: deliberately not
+  the one on your desk. A cheap VPS is plenty. Your laptop can sleep; the
+  terminals don't.
+- **tmux.** If you haven't met it: tmux runs terminal sessions on a machine that
+  keep running after you disconnect. You attach to a session to see it, detach,
+  and it carries on. That's the whole trick this recipe borrows: the terminal
+  belongs to the box, not to your screen.
+- **Remote Control.** Claude Code's own feature that puts a running session in
+  your claude.ai session list, so you can drive it from the web app, the desktop
+  app, or your phone. It looks like any other Claude Code session in the app; the
+  difference is where it's running.
+
+### How this differs from plain Remote Control
+
+Remote Control on its own already lets you drive a session from your phone. But
+the session lives and dies with the terminal you started it in. If that's your
+laptop, the laptop has to stay on and awake, and every new session means going
+back to the machine to start it.
+
+Move the terminals to an always-on box under tmux and both limits go: sessions
+survive you disconnecting, sleeping, or losing signal, and because a session can
+run the spawn script itself, you ask an existing session for a new one instead of
+touching the box. Not a new feature, just Remote Control given a home that never
+closes.
+
 ## The whole thing in one command
 
 ```bash
@@ -146,6 +175,26 @@ chmod +x spawn-remote.sh
 ```
 
 An agent can run it too, which is how one session starts the others.
+
+## The security model, plainly
+
+Questions worth answering before you run this:
+
+- **These are not sandboxes.** Every workbench is a full process on the same
+  machine, as the same user. A bench can read another bench's files. If you want
+  real isolation between pieces of work, that's separate Unix users, containers,
+  or separate machines; this recipe doesn't provide it.
+- **A dedicated box is itself a boundary.** Running unattended agents with
+  permissions skipped on your own laptop puts your SSH keys, browser sessions,
+  and everything else you care about in the blast radius. Running them on a VPS
+  that holds only the work confines the worst case to the box. That isn't
+  sandboxing in the strict sense, but it is most of what people want from it.
+- **Your claude.ai account becomes a control surface for the machine.** Anyone
+  who can open your session list can drive terminals on the box. Treat the
+  account accordingly: strong auth, and don't share it.
+- **Keep a human on anything that leaves the machine.** Skipped permissions
+  should mean the agent acts freely inside the box, not outside it. The gates,
+  and how to write them down, are in [WIRING.md](WIRING.md).
 
 ## Requirements and notes
 
