@@ -33,18 +33,39 @@ Three ingredients, and it helps to be plain about each:
   app, or your phone. It looks like any other Claude Code session in the app; the
   difference is where it's running.
 
-### How this differs from plain Remote Control
+### How this relates to what Remote Control does natively
 
-Remote Control on its own already lets you drive a session from your phone. But
-the session lives and dies with the terminal you started it in. If that's your
-laptop, the laptop has to stay on and awake, and every new session means going
-back to the machine to start it.
+Remote Control has grown several modes of its own, so it is worth being exact
+about what this recipe adds. As of mid-2026:
 
-Move the terminals to an always-on box under tmux and both limits go: sessions
-survive you disconnecting, sleeping, or losing signal, and because a session can
-run the spawn script itself, you ask an existing session for a new one instead of
-touching the box. Not a new feature, just Remote Control given a home that never
-closes.
+- An interactive session (`claude --remote-control`) lives and dies with the
+  local process: close the terminal and the session ends. Sleep is handled
+  gracefully, the session reconnects when the machine wakes, but a sleeping
+  machine does no work in the meantime.
+- **Server mode** (`claude remote-control`) is a native front door: one
+  process that waits for connections and spawns sessions on demand from the
+  app, up to a set capacity, each in the server's directory or its own git
+  worktree of that repo.
+- **Background sessions** (`claude --bg`, agent view) keep running with no
+  terminal attached, hosted by a per-user supervisor, and survive sleep. They
+  cover "keep working after I close the shell" without tmux.
+
+Knowing all that, the always-on box under tmux still buys three things:
+
+1. **The machine question disappears.** Every native mode above runs on a
+   machine that has to be on: the server-mode process and the supervisor both
+   stop at shutdown, and a sleeping laptop pauses the work. On a box that
+   never turns off, sessions are reachable and working at any hour, and your
+   own computer can be off.
+2. **Any directory, any brief.** Server mode spawns sessions in one repo. The
+   spawn script, run by an agent you ask, starts a named session in any
+   directory with any seed prompt and any plugin. The front door is an agent,
+   so it composes that brief for you rather than opening a blank session.
+3. **A second door.** tmux sessions are also real terminals you can reach
+   over SSH, independent of the app.
+
+None of this replaces the native modes; it wraps the same feature in a home
+that never closes.
 
 ## The whole thing in one command
 
@@ -181,9 +202,12 @@ An agent can run it too, which is how one session starts the others.
 Questions worth answering before you run this:
 
 - **These are not sandboxes.** Every workbench is a full process on the same
-  machine, as the same user. A bench can read another bench's files. If you want
-  real isolation between pieces of work, that's separate Unix users, containers,
-  or separate machines; this recipe doesn't provide it.
+  machine, as the same user. A bench can read another bench's files. Claude
+  Code itself offers some isolation if you want it: a `--sandbox` flag for
+  filesystem and network isolation (off by default), and background sessions
+  isolate their file edits in git worktrees. For real isolation between
+  pieces of work, that's separate Unix users, containers, or separate
+  machines; this recipe adds none of its own.
 - **A dedicated box is itself a boundary.** Running unattended agents with
   permissions skipped on your own laptop puts your SSH keys, browser sessions,
   and everything else you care about in the blast radius. Running them on a VPS

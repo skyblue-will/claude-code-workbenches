@@ -66,7 +66,9 @@ Five pieces:
    can't run a shell script, so you ask the front door instead: "spawn an audit bench
    on project-a, seeded with this." It runs [`spawn-remote.sh`](spawn-remote.sh) (the
    README's recipe), hands you the new session's link, and you carry on with your
-   morning.
+   morning. (Remote Control's own server mode also spawns sessions on demand, within
+   one repo; the front door is an agent, so it opens benches anywhere and writes the
+   brief. The README compares the two properly.)
 
 ### Surviving a reboot
 
