@@ -234,16 +234,11 @@ benches are how the work moves.
 
 ## Where this goes
 
-This repo is a foundational piece, not the full idea. What you have once it's running
-is remote, durable, parallel: benches you can open from anywhere, that survive you
-leaving, with memory in repos and a human on the gates. That is the ground layer.
+What you have once this is running is remote, durable, parallel: benches you can open
+from anywhere, that survive you leaving, with memory in repos and a human on the gates.
+The seed carries the intent, the bench grows the work, and you stay exactly where you
+must: the go and the sign-off.
 
-The idea it exists to serve sits above it: give an agent the best possible chance of
-completing meaningful work with the least human involvement that is still safe. Every
-habit on this page points at that. The seed carries the intent, the bench grows the
-work, and you stay exactly where you must: the go and the sign-off.
-
-The fuller architecture I run on this foundation, offices with real data boundaries,
-signed records of work, and a written standard, is getting a proper evaluation before
-it goes public. This layer is published first because it stands on its own. Take it
-and build your own on it.
+Build your own architecture from here. How you organise it, what you name, where you
+draw the lines is yours to decide, and the right answers depend on your work. I have my
+own ideas running on this foundation and will publish them in due course.
